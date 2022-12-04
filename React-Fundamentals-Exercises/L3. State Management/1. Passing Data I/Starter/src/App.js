@@ -101,8 +101,29 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <h2>Favorite Movies</h2>
+      <FavouriteMoviesList profiles={profiles} users={users} movies={movies} />
     </div>
   );
 };
 
 export default App;
+
+const FavouriteMoviesList = ({ profiles, users, movies }) => {
+  console.log(users);
+  console.log(movies[1]);
+  console.log(profiles[1]);
+
+  return (
+    <ol>
+      {profiles.map((profile) => {
+        const userName = users[profile.userID].name;
+        const favouriteMovieName = movies[profile.favoriteMovieID].name;
+        return (
+          <li key={profile.id}>
+            {userName}'s favour movie is {favouriteMovieName}
+          </li>
+        );
+      })}
+    </ol>
+  );
+};
