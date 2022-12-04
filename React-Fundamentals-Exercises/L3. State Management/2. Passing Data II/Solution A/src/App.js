@@ -108,6 +108,8 @@ const App = () => {
     }
   });
 
+  console.log({ usersByMovie });
+
   return (
     <div>
       <header className="App-header">

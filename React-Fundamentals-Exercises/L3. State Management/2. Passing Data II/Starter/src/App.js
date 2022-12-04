@@ -101,8 +101,46 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <h2>How Popular is Your Favorite Movie?</h2>
+      <MoviesPopularityList profiles={profiles} users={users} movies={movies} />
     </div>
   );
 };
 
 export default App;
+
+const MoviesPopularityList = ({ profiles, users, movies }) => {
+  return (
+    <>
+      {Object.keys(movies).map((key) => {
+        return (
+          <>
+            <h2>{movies[key].name}</h2>
+            <p>Liked by:</p>
+            <UsersWhoLikeMovie
+              users={users}
+              favoriteMovieID={movies[key].id}
+              profiles={profiles}
+            />
+          </>
+        );
+      })}
+    </>
+  );
+};
+
+const UsersWhoLikeMovie = ({ users, favoriteMovieID, profiles }) => {
+  const profilesWhoLikeMovie = profiles.filter(
+    (profile) => profile.favoriteMovieID == favoriteMovieID
+  );
+  if (profilesWhoLikeMovie.length === 0) {
+    return <p>None of the current users liked this movie</p>;
+  } else {
+    return (
+      <ul>
+        {profilesWhoLikeMovie.map((profile) => (
+          <li>{users[profile.id].name}</li>
+        ))}
+      </ul>
+    );
+  }
+};
