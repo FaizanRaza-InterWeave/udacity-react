@@ -45,14 +45,22 @@ const App = () => {
         Delete Last Item
       </button>
 
+      <ItemsList items={items} />
+    </div>
+  );
+};
+
+export default App;
+
+const ItemsList = ({ items }) => {
+  return (
+    <>
       <p className="items">Items</p>
       <ol className="item-list">
         {items.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ol>
-    </div>
+    </>
   );
 };
-
-export default App;
