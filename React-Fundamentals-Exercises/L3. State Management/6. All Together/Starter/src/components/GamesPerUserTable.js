@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import { ListUser } from "./ListItem";
 import { useState } from "react";
 
-export const GamesPerUserTable = () => {
+export const GamesPerUserTable = ({ users }) => {
   const [showGamesPlayed, setShowGamesPlayed] = useState(false);
   return (
     <>
@@ -14,21 +14,16 @@ export const GamesPerUserTable = () => {
       </div>
       <div className="row justify-content-center">
         <ul className="list-group col-6">
-          <ListUser
-            username="musky"
-            gamesPlayed="1"
-            showGamesPlayed={showGamesPlayed}
-          />
-          <ListUser
-            username="ball"
-            gamesPlayed="2"
-            showGamesPlayed={showGamesPlayed}
-          />
-          <ListUser
-            username="sweat"
-            gamesPlayed="3"
-            showGamesPlayed={showGamesPlayed}
-          />
+          {users.map((user) => {
+            console.log(user);
+            return (
+              <ListUser
+                username={user.userName}
+                gamesPlayed="3"
+                showGamesPlayed={showGamesPlayed}
+              />
+            );
+          })}
         </ul>
       </div>
       <Row className="row justify-content-center">

@@ -2,8 +2,14 @@ import logo from "./logo.svg";
 import { GamesPerUserTable } from "./components/GamesPerUserTable";
 import { AddUser } from "./components/AddUser";
 import "./App.css";
+import { useState } from "react";
 
 const App = () => {
+  const [users, setUsers] = useState([
+    { firstName: "Musky", lastName: "Balls", userName: "MuskyBalls" },
+    { firstName: "Sweaty", lastName: "Crack", userName: "SweatyCrack" },
+    { firstName: "Wiz", lastName: "Queefa", userName: "WizQueefa" },
+  ]);
   return (
     <>
       <div class="container-fluid-lg">
@@ -25,7 +31,7 @@ const App = () => {
                 </div>
               </div>
             </div>
-            <GamesPerUserTable />
+            <GamesPerUserTable users={users} />
           </body>
         </div>
       </div>
