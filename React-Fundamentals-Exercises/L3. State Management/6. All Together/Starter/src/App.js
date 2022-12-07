@@ -50,6 +50,25 @@ const App = () => {
                   </button>
                 </div>
               </div>
+              <div className="row justify-content-center">
+                <h2>Games Per User</h2>
+              </div>
+              <div className="row justify-content-center">
+                <ul class="list-group col-6">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Musky
+                    <span class="badge bg-primary rounded-pill">1</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Ball
+                    <span class="badge bg-primary rounded-pill">2</span>
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Sweat
+                    <span class="badge bg-primary rounded-pill">3</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </body>
         </div>
