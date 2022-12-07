@@ -1,35 +1,37 @@
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/esm/Row";
+
 export const AddUser = () => {
   return (
     <>
-      <div className="row">
+      <Row>
         <h2>Add User</h2>
-      </div>
-      <div className="row">
-        <div class="col-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="First name"
-            aria-label="First name"
-          ></input>
-        </div>
-        <div class="col-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Last name"
-            aria-label="Last name"
-          ></input>
-        </div>
-        <div class="col-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Username"
-            aria-label="Username"
-          ></input>
-        </div>
-      </div>
+      </Row>
+      <Form>
+        <Row>
+          <Col>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control type="text" placeholder="First name" />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control type="text" placeholder="Last name" />
+            </Form.Group>
+          </Col>{" "}
+          <Col>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control type="text" placeholder="Username" />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     </>
   );
 };

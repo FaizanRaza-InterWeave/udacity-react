@@ -21,7 +21,7 @@ const App = () => {
           <body>
             <div class="container-lg">
               <div className="row justify-content-start">
-                <AddUser />
+                <AddUser setUsers={setUsers} />
               </div>
               <div class="row justify-content-end mt-3">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
