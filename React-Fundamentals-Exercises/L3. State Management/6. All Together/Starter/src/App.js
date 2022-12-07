@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import { GamesPerUserTable } from "./components/GamesPerUserTable";
+import { AddUser } from "./components/AddUser";
 import "./App.css";
 
 const App = () => {
@@ -14,35 +15,7 @@ const App = () => {
           <body>
             <div class="container-lg">
               <div className="row justify-content-start">
-                <div className="row">
-                  <h2>Add User</h2>
-                </div>
-                <div className="row">
-                  <div class="col-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="First name"
-                      aria-label="First name"
-                    ></input>
-                  </div>
-                  <div class="col-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Last name"
-                      aria-label="Last name"
-                    ></input>
-                  </div>
-                  <div class="col-4">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Username"
-                      aria-label="Username"
-                    ></input>
-                  </div>
-                </div>
+                <AddUser />
               </div>
               <div class="row justify-content-end mt-3">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
