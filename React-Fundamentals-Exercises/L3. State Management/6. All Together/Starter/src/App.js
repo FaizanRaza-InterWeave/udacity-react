@@ -6,9 +6,24 @@ import { useState } from "react";
 
 const App = () => {
   const [users, setUsers] = useState([
-    { firstName: "Musky", lastName: "Balls", userName: "MuskyBalls" },
-    { firstName: "Sweaty", lastName: "Crack", userName: "SweatyCrack" },
-    { firstName: "Wiz", lastName: "Queefa", userName: "WizQueefa" },
+    {
+      firstName: "Musky",
+      lastName: "Balls",
+      userName: "MuskyBalls",
+      gamesPlayed: 1,
+    },
+    {
+      firstName: "Sweaty",
+      lastName: "Crack",
+      userName: "SweatyCrack",
+      gamesPlayed: 2,
+    },
+    {
+      firstName: "Wiz",
+      lastName: "Queefa",
+      userName: "WizQueefa",
+      gamesPlayed: 3,
+    },
   ]);
   return (
     <>
@@ -21,7 +36,7 @@ const App = () => {
           <body>
             <div class="container-lg">
               <div className="row justify-content-start">
-                <AddUser setUsers={setUsers} />
+                <AddUser users={users} setUsers={setUsers} />
               </div>
               <div class="row justify-content-end mt-3">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
