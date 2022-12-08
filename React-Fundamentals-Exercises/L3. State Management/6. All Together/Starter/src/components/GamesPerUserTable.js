@@ -19,7 +19,7 @@ export const GamesPerUserTable = ({ users }) => {
             return (
               <ListUser
                 username={user.userName}
-                gamesPlayed="3"
+                gamesPlayed={user.gamesPlayed}
                 showGamesPlayed={showGamesPlayed}
               />
             );
