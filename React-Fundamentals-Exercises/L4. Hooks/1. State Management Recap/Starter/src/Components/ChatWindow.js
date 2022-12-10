@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { PostMessage } from "./PostMessage";
+import { ChatHeadings } from "./ChatHeadings";
 
-export const ChatWindow = ({ users, isDisabled, messages }) => {
+export const ChatWindow = ({ users, messages }) => {
   return (
     <div className="chat-window">
-      <h2>Super Awesome Chat</h2>
-      <div className="name sender">{users[1].username}</div>
+      <ChatHeadings users={users} />
       <ul className="message-list">
         {messages.map((message, index) => (
           <li

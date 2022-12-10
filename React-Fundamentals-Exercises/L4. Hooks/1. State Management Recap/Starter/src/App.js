@@ -11,11 +11,6 @@ const messages = [
 ];
 
 const App = () => {
-  // If the user did not type anything, he/she should not be allowed to submit.
-  const isDisabled = () => {
-    return false;
-  };
-
   return (
     <div className="App">
       <header className="App-header">
@@ -23,7 +18,7 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <div className="container">
-        <ChatWindow users={users} messages={messages} isDisabled={isDisabled} />
+        <ChatWindow users={users} messages={messages} />
       </div>
     </div>
   );
