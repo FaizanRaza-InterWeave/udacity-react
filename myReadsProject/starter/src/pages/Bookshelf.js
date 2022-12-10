@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const BookShelf = ({ setShowSearchpage, showSearchPage }) => {
   return (
     <div className="list-books">
@@ -243,9 +245,9 @@ export const BookShelf = ({ setShowSearchpage, showSearchPage }) => {
           </div>
         </div>
       </div>
-      <div className="open-search">
-        <a onClick={() => setShowSearchpage(!showSearchPage)}>Add a book</a>
-      </div>
+      <Link className="open-search" to="/search-books">
+        Search
+      </Link>
     </div>
   );
 };
