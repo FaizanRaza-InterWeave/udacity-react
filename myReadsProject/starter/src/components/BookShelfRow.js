@@ -1,6 +1,6 @@
 import { Book } from "./Book";
 
-export const BookShelfRow = ({ books, rowName }) => {
+export const BookShelfRow = ({ books, rowName, setBooks }) => {
   const booksToDisplay = books.filter((book) => book.row === rowName);
   return (
     <div className="bookshelf">
@@ -14,6 +14,8 @@ export const BookShelfRow = ({ books, rowName }) => {
                 authors: book.authors,
                 coverUrl: book.coverUrl,
               }}
+              books={books}
+              setBooks={setBooks}
             />
           ))}
         </ol>

@@ -9,7 +9,7 @@ function App() {
 
   // A separate object per status would provide superior performance but inferior legibility
   // A single object chosen due to low number of books and status's minimizing performance requirements
-  const books = [
+  const originalBooks = [
     {
       title: "To Kill a Mockingbird",
       authors: "Harper Lee",
@@ -61,6 +61,8 @@ function App() {
     },
   ];
 
+  const [books, setBooks] = useState(originalBooks);
+
   return (
     <>
       <Routes>
@@ -71,6 +73,7 @@ function App() {
               setShowSearchpage={setShowSearchpage}
               showSearchPage={showSearchPage}
               books={books}
+              setBooks={setBooks}
             />
           }
         />
@@ -89,3 +92,7 @@ function App() {
 }
 
 export default App;
+
+const generateBookCategories = (books) => {
+  const bookCategories = {};
+};
