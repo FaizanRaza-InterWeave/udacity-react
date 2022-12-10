@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-export const PostMessage = ({}) => {
+export const PostMessage = ({ chatUser, setMessages, messages }) => {
   const [message, setMessage] = useState("");
-  const isDisabled = () => (message ? true : false);
+  const isDisabled = () => (message ? false : true);
+
+  console.log({ messagesInPostMessage: messages });
 
   return (
     <div>
@@ -18,7 +20,16 @@ export const PostMessage = ({}) => {
           }}
         />
         <div className="input-group-append">
-          <button className="btn submit-button" disabled={isDisabled()}>
+          <button
+            className="btn submit-button"
+            disabled={isDisabled()}
+            onClick={(event) => {
+              event.preventDefault();
+
+              setMessages([...messages, { username: chatUser, text: message }]);
+              setMessage("");
+            }}
+          >
             SEND
           </button>
         </div>

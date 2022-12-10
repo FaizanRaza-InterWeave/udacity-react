@@ -18,8 +18,18 @@ const App = () => {
         <h1 className="App-title">ReactND - Coding Practice</h1>
       </header>
       <div className="container">
-        <ChatWindow users={users} messages={messages} chatUser="John" />
-        <ChatWindow users={users} messages={messages} chatUser="Amy" />
+        <ChatWindow
+          users={users}
+          messages={messages}
+          chatUser="John"
+          setMessages={setMessages}
+        />
+        <ChatWindow
+          users={users}
+          messages={messages}
+          chatUser="Amy"
+          setMessages={setMessages}
+        />
       </div>
     </div>
   );
