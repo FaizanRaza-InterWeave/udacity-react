@@ -70,6 +70,7 @@ function App() {
             <BookShelf
               setShowSearchpage={setShowSearchpage}
               showSearchPage={showSearchPage}
+              books={books}
             />
           }
         />
