@@ -1,8 +1,8 @@
-export const ChatHeadings = ({ users }) => {
+export const ChatHeadings = ({ chatUser }) => {
   return (
     <>
       <h2>Super Awesome Chat</h2>
-      <div className="name sender">{users[1].username}</div>
+      <div className="name sender">{chatUser}</div>
     </>
   );
 };
