@@ -8,8 +8,10 @@ export const AddUser = ({ users, setUsers }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
-  const allFieldsPopulated = firstName && lastName && userName;
 
+  const isUniqueUsername = containsUserName(users, userName);
+  const allFieldsPopulated =
+    firstName && lastName && userName && !isUniqueUsername;
   return (
     <>
       <Row>
@@ -74,7 +76,12 @@ export const AddUser = ({ users, setUsers }) => {
         >
           Submit
         </Button>
+        {isUniqueUsername ? <p>Username Already in Use</p> : null}
       </Form>
     </>
   );
+};
+
+const containsUserName = (array, userName) => {
+  return array.some((item) => item.userName === userName);
 };
