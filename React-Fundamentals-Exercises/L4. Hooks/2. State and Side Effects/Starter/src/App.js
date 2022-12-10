@@ -3,7 +3,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 const App = () => {
-  const [equation, setEquation] = useState("");
+  const [equation, setEquation] = useState({});
   const [numCorrect, setNumCorrect] = useState(0);
   const [numQuestions, setNumQuestion] = useState(0);
 
