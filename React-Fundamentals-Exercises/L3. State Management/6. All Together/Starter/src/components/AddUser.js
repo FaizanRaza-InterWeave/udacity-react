@@ -8,6 +8,7 @@ export const AddUser = ({ users, setUsers }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
+  const allFieldsPopulated = firstName && lastName && userName;
 
   return (
     <>
@@ -69,6 +70,7 @@ export const AddUser = ({ users, setUsers }) => {
               },
             ]);
           }}
+          disabled={!allFieldsPopulated}
         >
           Submit
         </Button>
