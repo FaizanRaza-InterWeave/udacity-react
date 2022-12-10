@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 export const ChatWindow = ({ users, isDisabled, messages }) => {
+  const [message, setMessage] = useState("");
   return (
     <div className="chat-window">
       <h2>Super Awesome Chat</h2>
@@ -24,6 +27,10 @@ export const ChatWindow = ({ users, isDisabled, messages }) => {
             type="text"
             className="form-control"
             placeholder="Enter your message..."
+            value={message}
+            onChange={(event) => {
+              setMessage(event.target.value);
+            }}
           />
           <div className="input-group-append">
             <button className="btn submit-button" disabled={isDisabled()}>
