@@ -8,20 +8,6 @@ const App = () => {
   const [numQuestions, setNumQuestion] = useState(0);
 
   useEffect(() => {
-    const generateRandomEquation = () => {
-      const value1 = Math.floor(Math.random() * 100);
-      const value2 = Math.floor(Math.random() * 100);
-      const value3 = Math.floor(Math.random() * 100);
-      console.log(Math.floor(Math.random() * 3));
-
-      return {
-        value1,
-        value2,
-        value3,
-        proposedAnswer:
-          Math.floor(Math.random() * 3) + value1 + value2 + value3,
-      };
-    };
     setEquation(generateRandomEquation());
   }, [numCorrect, numQuestions]);
 
@@ -64,7 +50,21 @@ export default App;
 
 const isEquationCorrect = (equation) => {
   return (
-    equation.value1 + equation.value2 + equation.value3 !==
+    equation.value1 + equation.value2 + equation.value3 ===
     equation.proposedAnswer
   );
+};
+
+const generateRandomEquation = () => {
+  const value1 = Math.floor(Math.random() * 100);
+  const value2 = Math.floor(Math.random() * 100);
+  const value3 = Math.floor(Math.random() * 100);
+  console.log(Math.floor(Math.random() * 3));
+
+  return {
+    value1,
+    value2,
+    value3,
+    proposedAnswer: Math.floor(Math.random() * 3) + value1 + value2 + value3,
+  };
 };
