@@ -1,5 +1,19 @@
 export const Book = ({ book, books, setBooks }) => {
   console.log({ books });
+
+  function modifyObjectInArray(arr, key, value, keyToChange, newValue) {
+    // Find the object in the array that has the specified key and value
+    let obj = arr.find((obj) => obj[key] === value);
+
+    // If the object was found, update the value of the specified key
+    if (obj) {
+      obj[keyToChange] = newValue;
+    }
+
+    // Return the modified array
+    return arr;
+  }
+
   return (
     <li>
       <div className="book">
@@ -15,24 +29,24 @@ export const Book = ({ book, books, setBooks }) => {
           <div className="book-shelf-changer">
             <select
               onChange={(event) => {
-                console.log(event.target.value);
-                console.log(
-                  setBooks(
-                    modifyObjectInArray(
-                      books,
-                      "title",
-                      book.title,
-                      "row",
-                      event.target.value
-                    )
-                  )
+                event.preventDefault();
+                const newBooks = modifyObjectInArray(
+                  books,
+                  "title",
+                  book.title,
+                  "row",
+                  event.target.value
                 );
+
+                console.log({ newBooks });
+
+                setBooks(newBooks);
               }}
             >
               <option value="none" disabled>
                 Move to...
               </option>
-              <option value="Currently Reading">Currently Reading</option>
+              <option value="Currently Reading"></option>
               <option value="Want to Read">Want to Read</option>
               <option value="Read">Read</option>
               <option value="None">None</option>
@@ -45,16 +59,3 @@ export const Book = ({ book, books, setBooks }) => {
     </li>
   );
 };
-
-function modifyObjectInArray(arr, key, value, keyToChange, newValue) {
-  // Find the object in the array that has the specified key and value
-  let obj = arr.find((obj) => obj[key] === value);
-
-  // If the object was found, update the value of the specified key
-  if (obj) {
-    obj[keyToChange] = newValue;
-  }
-
-  // Return the modified array
-  return arr;
-}
