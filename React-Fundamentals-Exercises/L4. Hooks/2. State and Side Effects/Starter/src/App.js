@@ -1,12 +1,29 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
-  const [equation, setEquation] = useState(generateRandomEquation);
-
+  const [equation, setEquation] = useState("");
   const [numCorrect, setNumCorrect] = useState(0);
   const [numQuestions, setNumQuestion] = useState(0);
+
+  useEffect(() => {
+    const generateRandomEquation = () => {
+      const value1 = Math.floor(Math.random() * 100);
+      const value2 = Math.floor(Math.random() * 100);
+      const value3 = Math.floor(Math.random() * 100);
+      console.log(Math.floor(Math.random() * 3));
+
+      return {
+        value1,
+        value2,
+        value3,
+        proposedAnswer:
+          Math.floor(Math.random() * 3) + value1 + value2 + value3,
+      };
+    };
+    setEquation(generateRandomEquation());
+  }, [numCorrect, numQuestions]);
 
   return (
     <div className="App">
@@ -21,22 +38,7 @@ const App = () => {
         </div>
         <button
           onClick={() => {
-            if (
-              equation.value1 + equation.value2 + equation.value3 ===
-              equation.proposedAnswer
-            ) {
-              setNumCorrect(numCorrect + 1);
-            }
-            setEquation({
-              value1: Math.floor(Math.random() * 100),
-              value2: Math.floor(Math.random() * 100),
-              value3: Math.floor(Math.random() * 100),
-              proposedAnswer:
-                Math.floor(Math.random() * 3) +
-                equation.value1 +
-                equation.value2 +
-                equation.value3,
-            });
+            isEquationCorrect(equation) && setNumCorrect(numCorrect + 1);
             setNumQuestion(numQuestions + 1);
           }}
         >
@@ -44,13 +46,7 @@ const App = () => {
         </button>
         <button
           onClick={() => {
-            if (
-              equation.value1 + equation.value2 + equation.value3 !==
-              equation.proposedAnswer
-            ) {
-              setNumCorrect(numCorrect + 1);
-            }
-            setEquation(generateRandomEquation());
+            !isEquationCorrect(equation) && setNumCorrect(numCorrect + 1);
             setNumQuestion(numQuestions + 1);
           }}
         >
@@ -66,16 +62,9 @@ const App = () => {
 
 export default App;
 
-const generateRandomEquation = () => {
-  const value1 = Math.floor(Math.random() * 100);
-  const value2 = Math.floor(Math.random() * 100);
-  const value3 = Math.floor(Math.random() * 100);
-  console.log(Math.floor(Math.random() * 3));
-
-  return {
-    value1,
-    value2,
-    value3,
-    proposedAnswer: Math.floor(Math.random() * 3) + value1 + value2 + value3,
-  };
+const isEquationCorrect = (equation) => {
+  return (
+    equation.value1 + equation.value2 + equation.value3 !==
+    equation.proposedAnswer
+  );
 };
