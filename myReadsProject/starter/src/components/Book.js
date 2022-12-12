@@ -24,12 +24,12 @@ export const Book = ({ book, books, setBooks }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.coverUrl}")`,
+              backgroundImage: `url("${book.previewLink}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
             <select
-              value={book.row}
+              value={book.shelf}
               onChange={(event) => {
                 event.preventDefault();
 
@@ -37,7 +37,7 @@ export const Book = ({ book, books, setBooks }) => {
                   books,
                   "title",
                   book.title,
-                  "row",
+                  "shelf",
                   event.target.value
                 );
                 setBooks(newBooks);
@@ -46,15 +46,19 @@ export const Book = ({ book, books, setBooks }) => {
               <option value="none" disabled>
                 Move to...
               </option>
-              <option value="Currently Reading">Currently Reading</option>
-              <option value="Want to Read">Want to Read</option>
-              <option value="Read">Read</option>
-              <option value="None">None</option>
+              <option value="currentlyReading">Currently Reading</option>
+              <option value="wantToRead">Want to Read</option>
+              <option value="read">Read</option>
+              <option value="none">None</option>
             </select>
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        <div className="book-authors">{book.authors}</div>
+        <div className="book-authors">
+          {book.authors.map((author) => (
+            <span>{author} </span>
+          ))}
+        </div>
       </div>
     </li>
   );

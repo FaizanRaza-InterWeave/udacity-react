@@ -11,15 +11,15 @@ export const BookShelf = ({ books, setBooks }) => {
         <div>
           <BookShelfRow
             books={books}
-            rowName="Currently Reading"
+            rowName="currentlyReading"
             setBooks={setBooks}
           />
           <BookShelfRow
             books={books}
-            rowName="Want to Read"
+            rowName="wantToRead"
             setBooks={setBooks}
           />
-          <BookShelfRow books={books} rowName="Read" setBooks={setBooks} />
+          <BookShelfRow books={books} rowName="read" setBooks={setBooks} />
         </div>
       </div>
       <Link className="open-search" to="/search-books">

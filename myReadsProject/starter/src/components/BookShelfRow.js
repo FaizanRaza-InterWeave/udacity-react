@@ -1,7 +1,7 @@
 import { Book } from "./Book";
 
 export const BookShelfRow = ({ books, rowName, setBooks }) => {
-  const booksToDisplay = books.filter((book) => book.row === rowName);
+  const booksToDisplay = books.filter((book) => book.shelf === rowName);
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{rowName}</h2>
