@@ -16,7 +16,7 @@ export const Book = ({ book, books, setBooks }) => {
   }
 
   return (
-    <li>
+    <li key={book.title}>
       <div className="book">
         <div className="book-top">
           <div
