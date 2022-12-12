@@ -17,7 +17,10 @@ export const Book = ({ book, books, setBooks }) => {
     return newArr;
   }
 
-  const modifyBooksObject = (event) => {
+  const handleNewSelection = (event) => {
+    event.preventDefault();
+
+    update(book, event.target.value);
     const newBooks = modifyObjectInArray(
       books,
       "title",
@@ -44,10 +47,7 @@ export const Book = ({ book, books, setBooks }) => {
             <select
               value={book.shelf}
               onChange={(event) => {
-                event.preventDefault();
-
-                update(book, event.target.value);
-                modifyBooksObject(event);
+                handleNewSelection(event);
               }}
             >
               <option value="none" disabled>
