@@ -22,20 +22,20 @@ export const Book = ({ book, books, setBooks }) => {
     update(book, event.target.value);
 
     // Database as source of Truth
-    const allBooks = await getAll();
-    console.log({ allBooks });
-    setBooks(allBooks);
+    // const allBooks = await getAll();
+    // console.log({ allBooks });
+    // setBooks(allBooks);
 
     // Emulating requests sent to database
 
-    // const newBooks = modifyObjectInArray(
-    //   books,
-    //   "title",
-    //   book.title,
-    //   "shelf",
-    //   event.target.value
-    // );
-    // setBooks(newBooks);
+    const newBooks = modifyObjectInArray(
+      books,
+      "title",
+      book.title,
+      "shelf",
+      event.target.value
+    );
+    setBooks(newBooks);
   };
 
   return (
