@@ -26,7 +26,7 @@ export const Book = ({ book, books, setBooks }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.previewLink}")`,
+              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
