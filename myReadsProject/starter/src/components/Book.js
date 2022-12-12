@@ -21,14 +21,20 @@ export const Book = ({ book, books, setBooks }) => {
   // Original method, not as good but functionally the same
   function modifyObjectInArrayOld(arr, key, value, keyToChange, newValue) {
     // Find the object in the array that has the specified key and value
-    let obj = arr.find((obj) => obj[key] === value);
+    let findObjInArr = arr.find((obj) => obj[key] === value);
+
+    console.log({ findObjInArr });
 
     // If the object was found, update the value of the specified key
-    if (obj) {
-      obj[keyToChange] = newValue;
+    if (findObjInArr) {
+      findObjInArr[keyToChange] = newValue;
     }
 
-    const newArr = arr;
+    // This works
+    const newArr = [...arr];
+
+    // This doesnt work
+    // const newArr = arr;
 
     // Return the modified array
     return newArr;
@@ -74,10 +80,10 @@ export const Book = ({ book, books, setBooks }) => {
                 console.log({ newBooksOldMethod });
 
                 // This method will cause a rerender
-                setBooks(newBooks);
+                // setBooks(newBooks);
 
                 // This method will not cause a rerender
-                // setBooks(newBooksOldMethod);
+                setBooks(newBooksOldMethod);
               }}
             >
               <option value="none" disabled>
