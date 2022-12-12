@@ -8,15 +8,7 @@ export const BookShelfRow = ({ books, rowName, setBooks }) => {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {booksToDisplay.map((book) => (
-            <Book
-              book={{
-                title: book.title,
-                authors: book.authors,
-                coverUrl: book.coverUrl,
-              }}
-              books={books}
-              setBooks={setBooks}
-            />
+            <Book book={book} books={books} setBooks={setBooks} />
           ))}
         </ol>
       </div>
