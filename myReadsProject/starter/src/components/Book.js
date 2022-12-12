@@ -1,3 +1,5 @@
+import { update } from "../api/BooksAPI";
+
 export const Book = ({ book, books, setBooks }) => {
   // Original method, not as good but functionally the same
   function modifyObjectInArray(arr, key, value, keyToChange, newValue) {
@@ -14,6 +16,17 @@ export const Book = ({ book, books, setBooks }) => {
 
     return newArr;
   }
+
+  const modifyBooksObject = (event) => {
+    const newBooks = modifyObjectInArray(
+      books,
+      "title",
+      book.title,
+      "shelf",
+      event.target.value
+    );
+    setBooks(newBooks);
+  };
 
   return (
     <li>
@@ -33,14 +46,8 @@ export const Book = ({ book, books, setBooks }) => {
               onChange={(event) => {
                 event.preventDefault();
 
-                const newBooks = modifyObjectInArray(
-                  books,
-                  "title",
-                  book.title,
-                  "shelf",
-                  event.target.value
-                );
-                setBooks(newBooks);
+                update(book, event.target.value);
+                modifyBooksObject(event);
               }}
             >
               <option value="none" disabled>
