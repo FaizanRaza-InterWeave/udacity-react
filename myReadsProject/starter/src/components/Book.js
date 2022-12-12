@@ -15,10 +15,8 @@ export const Book = ({ book, books, setBooks }) => {
     return newArr;
   }
 
-  const key = book.title.replace(/ /g, "").toLowerCase();
-
   return (
-    <li key={key}>
+    <li>
       <div className="book">
         <div className="book-top">
           <div
@@ -58,7 +56,7 @@ export const Book = ({ book, books, setBooks }) => {
         <div className="book-title">{book.title}</div>
         <div className="book-authors">
           {book.authors.map((author) => (
-            <span>{author} </span>
+            <span key={author}>{author} </span>
           ))}
         </div>
       </div>
