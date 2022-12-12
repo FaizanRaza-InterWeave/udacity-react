@@ -15,8 +15,10 @@ export const Book = ({ book, books, setBooks }) => {
     return newArr;
   }
 
+  const key = book.title.replace(/ /g, "").toLowerCase();
+
   return (
-    <li key={book.title}>
+    <li key={key}>
       <div className="book">
         <div className="book-top">
           <div
