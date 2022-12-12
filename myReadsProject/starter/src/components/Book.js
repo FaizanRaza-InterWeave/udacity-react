@@ -6,6 +6,27 @@ export const Book = ({
 }) => {
   // Ensure those without a shelf value default to ""
   const shelf = book.shelf ? book.shelf : "";
+  // Handle missing data
+
+  // Display errors where info is missing from API call
+  let title = "";
+  try {
+    title = book.title ? book.title : "Error Loading Title";
+  } catch (e) {
+    title = "Error Loading Title";
+  }
+
+  let authors = "";
+  try {
+    authors = book.authors ? book.authors : ["Error Loading Authors"];
+  } catch (e) {
+    authors = ["Error Loading Authors"];
+  }
+
+  let thumbnail = "";
+  try {
+    thumbnail = book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "";
+  } catch (e) {}
 
   return (
     <li>
@@ -16,7 +37,7 @@ export const Book = ({
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
+              backgroundImage: `url("${thumbnail}")`,
             }}
           ></div>
           <div className="book-shelf-changer">
@@ -36,9 +57,9 @@ export const Book = ({
             </select>
           </div>
         </div>
-        <div className="book-title">{book.title}</div>
+        <div className="book-title">{title}</div>
         <div className="book-authors">
-          {book.authors.map((author) => (
+          {authors.map((author) => (
             <span key={author}>{author} </span>
           ))}
         </div>

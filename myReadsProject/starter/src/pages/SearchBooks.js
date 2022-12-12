@@ -1,4 +1,3 @@
-import { Book } from "../components/Book";
 import { useState } from "react";
 import { SearchBooksBar } from "../components/SearchBooksBar";
 import { SearchBooksResults } from "../components/SearchBooksResults";

@@ -11,8 +11,11 @@ export const SearchBooksBar = ({
     const searchedBooks = await search(searchString);
     console.log({ searchedBooks });
     if (!searchedBooks || searchedBooks.error) {
+      console.log("returning empty array");
       setSearchedBooks([]);
     } else {
+      console.log("returning array");
+
       setSearchedBooks(searchedBooks);
     }
   };
@@ -26,7 +29,9 @@ export const SearchBooksBar = ({
           value={searchTerm}
           onChange={(event) => {
             setSearchTerm(event.target.value);
-            searchBooks(event.target.value);
+            if (event.target.value) {
+              searchBooks(event.target.value);
+            }
           }}
         />
       </div>

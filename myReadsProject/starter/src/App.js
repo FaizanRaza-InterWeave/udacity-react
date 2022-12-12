@@ -20,6 +20,8 @@ function App() {
   }, []);
 
   const updateBookToBookShelf = async (book, event, books) => {
+    event.preventDefault();
+
     function addBookToBooks(arr, book, event) {
       // Remove book from array
       const filteredBooks = arr.filter((bookItem) => bookItem.id !== book.id);
@@ -30,11 +32,12 @@ function App() {
       return updatedBooks;
     }
 
-    event.preventDefault();
-    update(book, event.target.value);
+    if (event.target.value !== "") {
+      update(book, event.target.value);
 
-    const updatedBooks = addBookToBooks(books, book, event);
-    setBooks(updatedBooks);
+      const updatedBooks = addBookToBooks(books, book, event);
+      setBooks(updatedBooks);
+    }
   };
 
   return (
