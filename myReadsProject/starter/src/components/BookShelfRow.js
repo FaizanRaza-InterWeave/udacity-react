@@ -14,6 +14,7 @@ export const BookShelfRow = ({
     wantToRead: "Want to Read",
     read: "Read",
   };
+
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{shelfText[rowName]}</h2>

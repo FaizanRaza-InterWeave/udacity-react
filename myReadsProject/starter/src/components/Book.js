@@ -1,11 +1,10 @@
-import { update, getAll } from "../api/BooksAPI";
-
 export const Book = ({
   book,
   bookshelfBooks,
   setBooks,
   updateBookToBookShelf,
 }) => {
+  // Ensure those without a shelf value default to ""
   const shelf = book.shelf ? book.shelf : "";
 
   return (
