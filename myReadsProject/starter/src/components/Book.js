@@ -1,43 +1,6 @@
 import { update, getAll } from "../api/BooksAPI";
 
-export const Book = ({ book, books, setBooks }) => {
-  // Original method, not as good but functionally the same
-  function modifyObjectInArray(arr, key, value, keyToChange, newValue) {
-    // Find the object in the array that has the specified key and value
-    let obj = arr.find((obj) => obj[key] === value);
-
-    // If the object was found, update the value of the specified key
-    if (obj) {
-      obj[keyToChange] = newValue;
-    }
-
-    // Return a new array to trigger rerender
-    const newArr = [...arr];
-
-    return newArr;
-  }
-
-  const handleNewSelection = async (event) => {
-    event.preventDefault();
-    update(book, event.target.value);
-
-    // Database as source of Truth
-    // const allBooks = await getAll();
-    // console.log({ allBooks });
-    // setBooks(allBooks);
-
-    // Emulating requests sent to database
-
-    const newBooks = modifyObjectInArray(
-      books,
-      "title",
-      book.title,
-      "shelf",
-      event.target.value
-    );
-    setBooks(newBooks);
-  };
-
+export const Book = ({ book, books, setBooks, updateBookToBookShelf }) => {
   return (
     <li>
       <div className="book">
@@ -54,7 +17,7 @@ export const Book = ({ book, books, setBooks }) => {
             <select
               value={book.shelf}
               onChange={(event) => {
-                handleNewSelection(event);
+                updateBookToBookShelf(book, event);
               }}
             >
               <option value="none" disabled>

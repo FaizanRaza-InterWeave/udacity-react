@@ -1,6 +1,11 @@
 import { Book } from "./Book";
 
-export const BookShelfRow = ({ books, rowName, setBooks }) => {
+export const BookShelfRow = ({
+  books,
+  rowName,
+  setBooks,
+  updateBookToBookShelf,
+}) => {
   const booksToDisplay = books.filter((book) => book.shelf === rowName);
   const shelfText = {
     currentlyReading: "Currently Reading",
@@ -13,7 +18,13 @@ export const BookShelfRow = ({ books, rowName, setBooks }) => {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {booksToDisplay.map((book) => (
-            <Book book={book} books={books} setBooks={setBooks} key={book.id} />
+            <Book
+              book={book}
+              books={books}
+              setBooks={setBooks}
+              key={book.id}
+              updateBookToBookShelf={updateBookToBookShelf}
+            />
           ))}
         </ol>
       </div>
