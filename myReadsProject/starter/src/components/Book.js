@@ -1,6 +1,5 @@
 export const Book = ({ book, books, setBooks }) => {
-  console.log({ books });
-
+  // function provided by mentor
   function modifyObjectInArray(arr, key, book, keyToChange, newValue) {
     // Find the object in the array that has the specified key and value
     // let obj = arr.find((obj) => obj[key] === value);
@@ -19,6 +18,7 @@ export const Book = ({ book, books, setBooks }) => {
     return updatedBooks;
   }
 
+  // Original method, not as good but functionally the same
   function modifyObjectInArrayOld(arr, key, value, keyToChange, newValue) {
     // Find the object in the array that has the specified key and value
     let obj = arr.find((obj) => obj[key] === value);
@@ -28,8 +28,10 @@ export const Book = ({ book, books, setBooks }) => {
       obj[keyToChange] = newValue;
     }
 
+    const newArr = arr;
+
     // Return the modified array
-    return arr;
+    return newArr;
   }
 
   return (
@@ -65,10 +67,17 @@ export const Book = ({ book, books, setBooks }) => {
                   event.target.value
                 );
 
+                // When comparing the objects, they are for all intents and purposes identical (except for order)
+                // Unless you move The Adventures of Tom Sawyer when they will be identical
+
                 console.log({ newBooks });
                 console.log({ newBooksOldMethod });
 
+                // This method will cause a rerender
                 setBooks(newBooks);
+
+                // This method will not cause a rerender
+                // setBooks(newBooksOldMethod);
               }}
             >
               <option value="none" disabled>
