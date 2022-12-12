@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Book } from "../components/Book";
 import { useState } from "react";
+import { SearchBooksBar } from "../components/SearchBooksBar";
+import { useEffect } from "react";
+import { search } from "../api/BooksAPI";
 
 export const SearchBooks = ({ books, setBooks }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,27 +13,28 @@ export const SearchBooks = ({ books, setBooks }) => {
       arrayContainsSubstring(book.authors, searchTerm) ||
       arrayOfObjectsContainsSubstring(book.industryIdentifiers, searchTerm)
   );
+
+  const [searchedBooks, setSearchedBooks] = useState([]);
+
   return (
     <div className="search-books">
-      <div className="search-books-bar">
-        <Link className="close-search" to="/"></Link>
-        <div className="search-books-input-wrapper">
-          <input
-            type="text"
-            placeholder="Search by title, author, or ISBN"
-            value={searchTerm}
-            onChange={(event) => {
-              setSearchTerm(event.target.value);
-            }}
-          />
-        </div>
-      </div>
+      <SearchBooksBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        setSearchedBooks={setSearchedBooks}
+      />
       <div className="search-books-results">
         <div className="bookshelf-books">
-          <ol className="books-grid"></ol>
-          {booksToDisplay.map((book) => (
-            <Book book={book} books={books} setBooks={setBooks} key={book.id} />
-          ))}
+          <ol className="books-grid">
+            {searchedBooks.map((book) => (
+              <Book
+                book={book}
+                books={books}
+                setBooks={setBooks}
+                key={book.id}
+              />
+            ))}
+          </ol>
         </div>
       </div>
     </div>
