@@ -6,7 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import { getAll } from "./api/BooksAPI";
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -26,23 +25,11 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={
-            <BookShelf
-              setShowSearchpage={setShowSearchpage}
-              showSearchPage={showSearchPage}
-              books={books}
-              setBooks={setBooks}
-            />
-          }
+          element={<BookShelf books={books} setBooks={setBooks} />}
         />
         <Route
           path="/search-books"
-          element={
-            <SearchBooks
-              setShowSearchpage={setShowSearchpage}
-              showSearchPage={showSearchPage}
-            />
-          }
+          element={<SearchBooks books={books} setBooks={setBooks} />}
         />
       </Routes>
     </>
