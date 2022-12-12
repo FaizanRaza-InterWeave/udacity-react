@@ -7,7 +7,7 @@ import { getAll } from "./api/BooksAPI";
 import { update } from "./api/BooksAPI";
 
 function App() {
-  const [books, setBooks] = useState([]);
+  const [bookshelfBooks, setBooks] = useState([]);
 
   useEffect(() => {
     const getAllAddedBooks = async () => {
@@ -19,7 +19,14 @@ function App() {
     getAllAddedBooks();
   }, []);
 
-  const updateBookToBookShelf = async (book, event) => {
+  const updateBookToBookShelf = async (book, event, books) => {
+    console.log({
+      updateBookToBookShelf: {
+        book: book,
+        event: event,
+        books: books,
+      },
+    });
     function modifyObjectInArray(arr, key, value, keyToChange, newValue) {
       // Find the object in the array that has the specified key and value
       let obj = arr.find((obj) => obj[key] === value);
@@ -35,6 +42,16 @@ function App() {
       return newArr;
     }
 
+    function addBookToBooks(arr, book, event) {
+      // Remove book from array
+      const filteredBooks = arr.filter((bookItem) => bookItem.id !== book.id);
+      book["shelf"] = event.target.value;
+      const updatedBooks = filteredBooks.concat(book);
+      console.log({ updatedBooks });
+
+      return updatedBooks;
+    }
+
     event.preventDefault();
     update(book, event.target.value);
 
@@ -45,7 +62,11 @@ function App() {
       "shelf",
       event.target.value
     );
-    setBooks(newBooks);
+
+    const updatedBooks = addBookToBooks(books, book, event);
+
+    console.log({ newBooks });
+    setBooks(updatedBooks);
   };
 
   return (
@@ -55,7 +76,7 @@ function App() {
           path="/"
           element={
             <BookShelf
-              books={books}
+              bookshelfBooks={bookshelfBooks}
               setBooks={setBooks}
               updateBookToBookShelf={updateBookToBookShelf}
             />
@@ -63,7 +84,13 @@ function App() {
         />
         <Route
           path="/search-books"
-          element={<SearchBooks books={books} setBooks={setBooks} />}
+          element={
+            <SearchBooks
+              bookshelfBooks={bookshelfBooks}
+              setBooks={setBooks}
+              updateBookToBookShelf={updateBookToBookShelf}
+            />
+          }
         />
       </Routes>
     </>

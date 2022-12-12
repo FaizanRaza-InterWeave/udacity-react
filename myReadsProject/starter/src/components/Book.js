@@ -1,6 +1,13 @@
 import { update, getAll } from "../api/BooksAPI";
 
-export const Book = ({ book, books, setBooks, updateBookToBookShelf }) => {
+export const Book = ({
+  book,
+  bookshelfBooks,
+  setBooks,
+  updateBookToBookShelf,
+}) => {
+  const shelf = book.shelf ? book.shelf : "";
+
   return (
     <li>
       <div className="book">
@@ -15,12 +22,12 @@ export const Book = ({ book, books, setBooks, updateBookToBookShelf }) => {
           ></div>
           <div className="book-shelf-changer">
             <select
-              value={book.shelf}
+              value={shelf}
               onChange={(event) => {
-                updateBookToBookShelf(book, event);
+                updateBookToBookShelf(book, event, bookshelfBooks);
               }}
             >
-              <option value="none" disabled>
+              <option value="" disabled>
                 Move to...
               </option>
               <option value="currentlyReading">Currently Reading</option>

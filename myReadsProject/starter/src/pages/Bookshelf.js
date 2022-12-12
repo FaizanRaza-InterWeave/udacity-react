@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { BookShelfRow } from "../components/BookShelfRow";
 
-export const BookShelf = ({ books, setBooks, updateBookToBookShelf }) => {
+export const BookShelf = ({
+  bookshelfBooks,
+  setBooks,
+  updateBookToBookShelf,
+}) => {
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -10,19 +14,19 @@ export const BookShelf = ({ books, setBooks, updateBookToBookShelf }) => {
       <div className="list-books-content">
         <div>
           <BookShelfRow
-            books={books}
+            bookshelfBooks={bookshelfBooks}
             rowName="currentlyReading"
             setBooks={setBooks}
             updateBookToBookShelf={updateBookToBookShelf}
           />
           <BookShelfRow
-            books={books}
+            bookshelfBooks={bookshelfBooks}
             rowName="wantToRead"
             setBooks={setBooks}
             updateBookToBookShelf={updateBookToBookShelf}
           />
           <BookShelfRow
-            books={books}
+            bookshelfBooks={bookshelfBooks}
             rowName="read"
             setBooks={setBooks}
             updateBookToBookShelf={updateBookToBookShelf}

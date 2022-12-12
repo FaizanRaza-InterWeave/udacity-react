@@ -1,12 +1,14 @@
 import { Book } from "./Book";
 
 export const BookShelfRow = ({
-  books,
+  bookshelfBooks,
   rowName,
   setBooks,
   updateBookToBookShelf,
 }) => {
-  const booksToDisplay = books.filter((book) => book.shelf === rowName);
+  const booksToDisplay = bookshelfBooks.filter(
+    (book) => book.shelf === rowName
+  );
   const shelfText = {
     currentlyReading: "Currently Reading",
     wantToRead: "Want to Read",
@@ -20,7 +22,7 @@ export const BookShelfRow = ({
           {booksToDisplay.map((book) => (
             <Book
               book={book}
-              books={books}
+              bookshelfBooks={bookshelfBooks}
               setBooks={setBooks}
               key={book.id}
               updateBookToBookShelf={updateBookToBookShelf}

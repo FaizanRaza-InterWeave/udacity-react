@@ -3,7 +3,11 @@ import { useState } from "react";
 import { SearchBooksBar } from "../components/SearchBooksBar";
 import { SearchBooksResults } from "../components/SearchBooksResults";
 
-export const SearchBooks = ({ books, setBooks }) => {
+export const SearchBooks = ({
+  bookshelfBooks,
+  setBooks,
+  updateBookToBookShelf,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [searchedBooks, setSearchedBooks] = useState([]);
@@ -17,8 +21,9 @@ export const SearchBooks = ({ books, setBooks }) => {
       />
       <SearchBooksResults
         searchedBooks={searchedBooks}
-        books={books}
+        bookshelfBooks={bookshelfBooks}
         setBooks={setBooks}
+        updateBookToBookShelf={updateBookToBookShelf}
       />
     </div>
   );
