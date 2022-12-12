@@ -9,15 +9,13 @@ function App() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    const getAllBooks = async () => {
-      console.log("Calling GetAll");
-
-      const response = await getAll();
-      setBooks(response);
-      console.log(response);
+    const getAllAddedBooks = async () => {
+      const allAddedBooks = await getAll();
+      setBooks(allAddedBooks);
+      console.log(allAddedBooks);
     };
 
-    getAllBooks();
+    getAllAddedBooks();
   }, []);
 
   return (
