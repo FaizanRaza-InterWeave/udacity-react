@@ -1,4 +1,4 @@
-import { update } from "../api/BooksAPI";
+import { update, getAll } from "../api/BooksAPI";
 
 export const Book = ({ book, books, setBooks }) => {
   // Original method, not as good but functionally the same
@@ -17,18 +17,25 @@ export const Book = ({ book, books, setBooks }) => {
     return newArr;
   }
 
-  const handleNewSelection = (event) => {
+  const handleNewSelection = async (event) => {
     event.preventDefault();
-
     update(book, event.target.value);
-    const newBooks = modifyObjectInArray(
-      books,
-      "title",
-      book.title,
-      "shelf",
-      event.target.value
-    );
-    setBooks(newBooks);
+
+    // Database as source of Truth
+    const allBooks = await getAll();
+    console.log({ allBooks });
+    setBooks(allBooks);
+
+    // Emulating requests sent to database
+
+    // const newBooks = modifyObjectInArray(
+    //   books,
+    //   "title",
+    //   book.title,
+    //   "shelf",
+    //   event.target.value
+    // );
+    // setBooks(newBooks);
   };
 
   return (
