@@ -7,15 +7,12 @@ export const SearchBooksBar = ({
   setSearchedBooks,
 }) => {
   const searchBooks = async (searchString) => {
-    console.log(`searching for ${searchString}`);
     const searchedBooks = await search(searchString);
-    console.log({ searchedBooks });
+
+    // Handle errors and empty arrays
     if (!searchedBooks || searchedBooks.error) {
-      console.log("returning empty array");
       setSearchedBooks([]);
     } else {
-      console.log("returning array");
-
       setSearchedBooks(searchedBooks);
     }
   };

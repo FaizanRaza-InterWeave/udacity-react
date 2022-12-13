@@ -13,7 +13,6 @@ function App() {
     const getAllAddedBooks = async () => {
       const allAddedBooks = await getAll();
       setBooks(allAddedBooks);
-      console.log(allAddedBooks);
     };
 
     getAllAddedBooks();
@@ -23,11 +22,9 @@ function App() {
     event.preventDefault();
 
     function addBookToBooks(arr, book, event) {
-      // Remove book from array
       const filteredBooks = arr.filter((bookItem) => bookItem.id !== book.id);
       book["shelf"] = event.target.value;
       const updatedBooks = filteredBooks.concat(book);
-      console.log({ updatedBooks });
 
       return updatedBooks;
     }

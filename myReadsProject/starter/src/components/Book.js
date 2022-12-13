@@ -6,7 +6,6 @@ export const Book = ({
 }) => {
   // Ensure those without a shelf value default to ""
   const shelf = book.shelf ? book.shelf : "";
-  // Handle missing data
 
   // Display errors where info is missing from API call
   let title = "";
