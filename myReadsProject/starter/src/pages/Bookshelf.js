@@ -33,7 +33,7 @@ export const BookShelf = ({
           />
         </div>
       </div>
-      <Link className="open-search" to="/search-books">
+      <Link className="open-search" to="/search">
         Search
       </Link>
     </div>

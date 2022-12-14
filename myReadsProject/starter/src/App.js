@@ -51,7 +51,7 @@ function App() {
           }
         />
         <Route
-          path="/search-books"
+          path="/search"
           element={
             <SearchBooks
               bookshelfBooks={bookshelfBooks}
