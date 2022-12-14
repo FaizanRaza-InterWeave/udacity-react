@@ -1,11 +1,23 @@
-export const Book = ({
-  book,
-  bookshelfBooks,
-  setBooks,
-  updateBookToBookShelf,
-}) => {
-  // Ensure those without a shelf value default to ""
-  const shelf = book.shelf ? book.shelf : "";
+export const Book = ({ book, bookshelfBooks, updateBookToBookShelf }) => {
+  console.log({ book });
+  console.log({ book: book.title, shelf: book.shelf });
+  let shelf;
+
+  // When called with book object from the search API, book.shelf is undefined.
+  // So look up the shelf from the state
+  if (!book.shelf) {
+    const shelfOnBookshelf = bookshelfBooks.filter(
+      (bookOnBookShelf) => bookOnBookShelf.title === book.title
+    );
+
+    if (shelfOnBookshelf.length === 1) {
+      shelf = shelfOnBookshelf[0].shelf;
+    } else {
+      shelf = "";
+    }
+  } else {
+    shelf = book.shelf;
+  }
 
   // Display errors where info is missing from API call
   let title = "";
