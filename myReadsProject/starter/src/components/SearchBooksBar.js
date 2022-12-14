@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { search } from "../api/BooksAPI";
+import { debounce } from "lodash";
 
 export const SearchBooksBar = ({
   searchTerm,
   setSearchTerm,
   setSearchedBooks,
 }) => {
-  const searchBooks = async (searchString) => {
+  const searchBooks = debounce(async (searchString) => {
     const searchedBooks = await search(searchString);
 
     // Handle errors and empty arrays
@@ -15,7 +16,7 @@ export const SearchBooksBar = ({
     } else {
       setSearchedBooks(searchedBooks);
     }
-  };
+  }, 500);
   return (
     <div className="search-books-bar">
       <Link className="close-search" to="/"></Link>
