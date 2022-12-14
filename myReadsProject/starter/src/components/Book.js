@@ -1,6 +1,4 @@
 export const Book = ({ book, bookshelfBooks, updateBookToBookShelf }) => {
-  console.log({ book });
-  console.log({ book: book.title, shelf: book.shelf });
   let shelf;
 
   // When called with book object from the search API, book.shelf is undefined.
