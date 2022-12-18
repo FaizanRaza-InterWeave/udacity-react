@@ -1,8 +1,28 @@
+import { useRef } from "react";
 import { List } from "./List";
-export const Todos = () => {
+import { addTodoAction, generateId } from "./store";
+
+export const Todos = ({ store }) => {
+  const inputRef = useRef();
+
+  const addItem = (event) => {
+    event.preventDefault();
+    const name = inputRef.current.value;
+    inputRef.current.value = "";
+
+    store.dispatch(
+      addTodoAction({
+        name,
+        complete: false,
+        id: generateId(),
+      })
+    );
+  };
   return (
     <div>
-      TODOS
+      <h1> Todo List</h1>
+      <input type="text" placeholder="Add Todo" ref={inputRef} />
+      <button onClick={addItem}>Add Todo</button>
       <List />
     </div>
   );
