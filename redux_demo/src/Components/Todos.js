@@ -6,6 +6,8 @@ import {
   removeTodoAction,
   toggleTodoAction,
   handleDeleteTodo,
+  handleAddTodo,
+  handleToggleTodo,
 } from "./store";
 import { API } from "./API";
 
@@ -15,35 +17,17 @@ export const Todos = ({ store, todos }) => {
   const addItem = (event) => {
     event.preventDefault();
 
-    return API.saveTodo(inputRef.current.value)
-      .then((todo) => {
-        store.dispatch(addTodoAction(todo));
-
-        inputRef.current.value = "";
-      })
-      .catch(() => {
-        alert("There was an error, try again");
-      });
+    store.dispatch(
+      handleAddTodo(inputRef.current.value, () => (inputRef.current.value = ""))
+    );
   };
 
   const removeItem = (todo) => {
     store.dispatch(handleDeleteTodo(todo));
-
-    // store.dispatch(removeTodoAction(todo.id));
-
-    // return API.deleteTodo(todo.id).catch(() => {
-    //   store.dispatch(addTodoAction(todo));
-    //   alert("An error occurred, Try again");
-    // });
   };
 
   const toggleItem = (id) => {
-    store.dispatch(toggleTodoAction(id));
-
-    return API.saveTodoToggle(id).catch(() => {
-      store.dispatch(toggleTodoAction(id));
-      alert("An error occurred, Try again");
-    });
+    store.dispatch(handleToggleTodo(id));
   };
   return (
     <div>

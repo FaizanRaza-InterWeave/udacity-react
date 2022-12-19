@@ -21,11 +21,6 @@ export const Goals = ({ store, goals }) => {
 
   const removeItem = (goal) => {
     store.dispatch(handleDeleteGoal(goal));
-
-    // return API.deleteGoal(goal.id).catch(() => {
-    //   store.dispatch(addGoalAction(goal));
-    //   alert("An error occurred, Try again");
-    // });
   };
 
   return (

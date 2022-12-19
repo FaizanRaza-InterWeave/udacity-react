@@ -67,6 +67,31 @@ export function handleAddGoal(goal, resetFieldFunc) {
   };
 }
 
+export function handleAddTodo(todo, resetFieldFunc) {
+  return (dispatch) => {
+    return API.saveTodo(todo)
+      .then((todo) => {
+        dispatch(addTodoAction(todo));
+
+        resetFieldFunc();
+      })
+      .catch(() => {
+        alert("An error occurred, Try again");
+      });
+  };
+}
+
+export function handleToggleTodo(todoId) {
+  return (dispatch) => {
+    dispatch(toggleTodoAction(todoId));
+
+    return API.saveTodoToggle(todoId).catch(() => {
+      dispatch(toggleTodoAction(todoId));
+      alert("An error occurred, Try again");
+    });
+  };
+}
+
 export function handleDeleteGoal(goal) {
   return (dispatch) => {
     dispatch(removeGoalAction(goal.id));
