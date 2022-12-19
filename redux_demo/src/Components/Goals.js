@@ -1,25 +1,31 @@
 import { useRef } from "react";
 import { List } from "./List";
 import { addGoalAction, generateId, removeGoalAction } from "./store";
+import { API } from "./API";
 
 export const Goals = ({ store, goals }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
     event.preventDefault();
-    const name = inputRef.current.value;
-    inputRef.current.value = "";
+    return API.saveGoal(inputRef.current.value)
+      .then((goal) => {
+        store.dispatch(addGoalAction(goal));
 
-    store.dispatch(
-      addGoalAction({
-        name,
-        id: generateId(),
+        inputRef.current.value = "";
       })
-    );
+      .catch(() => {
+        alert("An error occurred, Try again");
+      });
   };
 
   const removeItem = (goal) => {
     store.dispatch(removeGoalAction(goal.id));
+
+    return API.deleteGoal(goal.id).catch(() => {
+      store.dispatch(addGoalAction(goal));
+      alert("An error occurred, Try again");
+    });
   };
 
   return (

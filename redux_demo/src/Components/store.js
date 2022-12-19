@@ -1,4 +1,6 @@
 import * as Redux from "redux";
+import { API } from "./API";
+import { configureStore } from "@reduxjs/toolkit";
 
 export function generateId() {
   return (
@@ -38,6 +40,16 @@ export function removeGoalAction(id) {
   return {
     type: REMOVE_GOAL,
     id,
+  };
+}
+
+export function handleDeleteTodo(todo) {
+  return (dispatch) => {
+    dispatch(removeTodoAction(todo.id));
+    return API.deleteTodo(todo.id).catch(() => {
+      dispatch(addTodoAction(todo));
+      alert("An error occurred, Try again");
+    });
   };
 }
 
@@ -127,11 +139,13 @@ const logger = (store) => (next) => (action) => {
   return result;
 };
 
-export const store = Redux.createStore(
-  Redux.combineReducers({
-    todos,
-    goals,
-    loading,
-  }),
-  Redux.applyMiddleware(logger, checker)
+export const store = configureStore(
+  {
+    reducer: {
+      todos,
+      goals,
+      loading,
+    },
+  },
+  Redux.applyMiddleware(checker, logger)
 );
