@@ -3,6 +3,7 @@ import { Todos } from "./Components/Todos";
 import { Goals } from "./Components/Goals";
 import * as Redux from "redux";
 import { store } from "./Components/store";
+import { useEffect, useState } from "react";
 function App() {
   // Library Code
   function createStore(reducer) {
@@ -36,10 +37,21 @@ function App() {
     };
   }
 
+  let [dummyState, setDummyState] = useState(0);
+
+  useEffect(() => {
+    store.subscribe(() => {
+      setDummyState((value) => value + 1);
+    });
+  }, []);
+
+  const { todos, goals } = store.getState();
+
   return (
     <div className="App">
-      <Todos store={store} />
-      <Goals store={store} />
+      {dummyState}
+      <Todos store={store} todos={todos} />
+      <Goals store={store} goals={goals} />
     </div>
   );
 }

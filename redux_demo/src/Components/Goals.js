@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { List } from "./List";
-import { addGoalAction, generateId } from "./store";
+import { addGoalAction, generateId, removeGoalAction } from "./store";
 
-export const Goals = ({ store }) => {
+export const Goals = ({ store, goals }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
@@ -17,12 +17,17 @@ export const Goals = ({ store }) => {
       })
     );
   };
+
+  const removeItem = (goal) => {
+    store.dispatch(removeGoalAction(goal.id));
+  };
+
   return (
     <div>
       <h1>Goals</h1>
       <input type="text" placeholder="Add Goal" ref={inputRef} />
       <button onClick={addItem}>Add Goal</button>
-      <List />
+      <List items={goals} removeItem={removeItem} />
     </div>
   );
 };
