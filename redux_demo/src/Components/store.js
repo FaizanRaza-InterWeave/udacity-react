@@ -53,6 +53,30 @@ export function handleDeleteTodo(todo) {
   };
 }
 
+export function handleAddGoal(goal, resetFieldFunc) {
+  return (dispatch) => {
+    return API.saveGoal(goal)
+      .then((goal) => {
+        dispatch(addGoalAction(goal));
+
+        resetFieldFunc();
+      })
+      .catch(() => {
+        alert("An error occurred, Try again");
+      });
+  };
+}
+
+export function handleDeleteGoal(goal) {
+  return (dispatch) => {
+    dispatch(removeGoalAction(goal.id));
+    return API.deleteGoal(goal.id).catch(() => {
+      dispatch(addGoalAction(goal));
+      alert("An error occurred, Try again");
+    });
+  };
+}
+
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";

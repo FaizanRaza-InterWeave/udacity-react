@@ -1,6 +1,12 @@
 import { useRef } from "react";
 import { List } from "./List";
-import { addGoalAction, generateId, removeGoalAction } from "./store";
+import {
+  addGoalAction,
+  generateId,
+  removeGoalAction,
+  handleAddGoal,
+  handleDeleteGoal,
+} from "./store";
 import { API } from "./API";
 
 export const Goals = ({ store, goals }) => {
@@ -8,24 +14,18 @@ export const Goals = ({ store, goals }) => {
 
   const addItem = (event) => {
     event.preventDefault();
-    return API.saveGoal(inputRef.current.value)
-      .then((goal) => {
-        store.dispatch(addGoalAction(goal));
-
-        inputRef.current.value = "";
-      })
-      .catch(() => {
-        alert("An error occurred, Try again");
-      });
+    store.dispatch(
+      handleAddGoal(inputRef.current.value, () => (inputRef.current.value = ""))
+    );
   };
 
   const removeItem = (goal) => {
-    store.dispatch(removeGoalAction(goal.id));
+    store.dispatch(handleDeleteGoal(goal));
 
-    return API.deleteGoal(goal.id).catch(() => {
-      store.dispatch(addGoalAction(goal));
-      alert("An error occurred, Try again");
-    });
+    // return API.deleteGoal(goal.id).catch(() => {
+    //   store.dispatch(addGoalAction(goal));
+    //   alert("An error occurred, Try again");
+    // });
   };
 
   return (
