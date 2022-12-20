@@ -1,15 +1,6 @@
 import { useRef } from "react";
 import { List } from "./List";
-import {
-  addTodoAction,
-  generateId,
-  removeTodoAction,
-  toggleTodoAction,
-  handleDeleteTodo,
-  handleAddTodo,
-  handleToggleTodo,
-} from "./store";
-import { API } from "./API";
+import { handleDeleteTodo, handleAddTodo, handleToggleTodo } from "./store";
 
 export const Todos = ({ store, todos }) => {
   const inputRef = useRef();

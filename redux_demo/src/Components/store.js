@@ -102,6 +102,16 @@ export function handleDeleteGoal(goal) {
   };
 }
 
+export function handleInitialData() {
+  return (dispatch) => {
+    Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
+      console.log("Todos", todos);
+      console.log("Goals", goals);
+      dispatch(receiveDataAction(todos, goals));
+    });
+  };
+}
+
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const TOGGLE_TODO = "TOGGLE_TODO";

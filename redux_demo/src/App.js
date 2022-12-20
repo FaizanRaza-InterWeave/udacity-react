@@ -1,10 +1,8 @@
-import logo from "./logo.svg";
 import { Todos } from "./Components/Todos";
 import { Goals } from "./Components/Goals";
-import * as Redux from "redux";
-import { store, receiveDataAction } from "./Components/store";
+import { store, handleInitialData } from "./Components/store";
 import { useEffect, useState } from "react";
-import { API } from "./Components/API";
+
 function App() {
   let [dummyState, setDummyState] = useState(0);
 
@@ -15,11 +13,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    Promise.all([API.fetchTodos(), API.fetchGoals()]).then(([todos, goals]) => {
-      console.log("Todos", todos);
-      console.log("Goals", goals);
-      store.dispatch(receiveDataAction(todos, goals));
-    });
+    store.dispatch(handleInitialData());
   }, []);
 
   const { todos, goals, loading } = store.getState();
