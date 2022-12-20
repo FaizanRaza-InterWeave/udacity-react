@@ -1,24 +1,25 @@
 import { useRef } from "react";
 import { List } from "./List";
 import { handleDeleteTodo, handleAddTodo, handleToggleTodo } from "./store";
+import { Provider, Context } from "./context";
 
-export const Todos = ({ store, todos }) => {
+export const Todos = ({ dispatch, todos }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
     event.preventDefault();
 
-    store.dispatch(
+    dispatch(
       handleAddTodo(inputRef.current.value, () => (inputRef.current.value = ""))
     );
   };
 
   const removeItem = (todo) => {
-    store.dispatch(handleDeleteTodo(todo));
+    dispatch(handleDeleteTodo(todo));
   };
 
   const toggleItem = (id) => {
-    store.dispatch(handleToggleTodo(id));
+    dispatch(handleToggleTodo(id));
   };
   return (
     <div>
@@ -27,5 +28,16 @@ export const Todos = ({ store, todos }) => {
       <button onClick={addItem}>Add Todo</button>
       <List items={todos} removeItem={removeItem} toggleItem={toggleItem} />
     </div>
+  );
+};
+
+export const ConnectedTodos = () => {
+  return (
+    <Context.Consumer>
+      {(store) => {
+        const { todos } = store.getState();
+        return <Todos todos={todos} dispatch={store.dispatch} />;
+      }}
+    </Context.Consumer>
   );
 };

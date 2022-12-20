@@ -1,5 +1,5 @@
-import { Todos } from "./Components/Todos";
-import { Goals } from "./Components/Goals";
+import { ConnectedTodos } from "./Components/Todos";
+import { ConnectedGoals } from "./Components/Goals";
 import { store, handleInitialData } from "./Components/store";
 import { useEffect, useState, createContext } from "react";
 import { Provider, Context } from "./Components/context";
@@ -17,7 +17,7 @@ function App() {
     store.dispatch(handleInitialData());
   }, []);
 
-  const { todos, goals, loading } = store.getState();
+  const { loading } = store.getState();
 
   if (loading) {
     return <h3>Loading</h3>;
@@ -26,19 +26,15 @@ function App() {
   return (
     <div className="App">
       {dummyState}
-      <Todos store={store} todos={todos} />
-      <Goals store={store} goals={goals} />
+      <ConnectedTodos />
+      <ConnectedGoals />
     </div>
   );
 }
 
 function ConnectedApp(store) {
   return (
-    <Context.Consumer>
-      {(store) => {
-        <App />;
-      }}
-    </Context.Consumer>
+    <Context.Consumer>{(store) => <App store={store} />}</Context.Consumer>
   );
 }
 

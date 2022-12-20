@@ -8,19 +8,20 @@ import {
   handleDeleteGoal,
 } from "./store";
 import { API } from "./API";
+import { Provider, Context } from "./context";
 
-export const Goals = ({ store, goals }) => {
+export const Goals = ({ dispatch, goals }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
     event.preventDefault();
-    store.dispatch(
+    dispatch(
       handleAddGoal(inputRef.current.value, () => (inputRef.current.value = ""))
     );
   };
 
   const removeItem = (goal) => {
-    store.dispatch(handleDeleteGoal(goal));
+    dispatch(handleDeleteGoal(goal));
   };
 
   return (
@@ -30,5 +31,16 @@ export const Goals = ({ store, goals }) => {
       <button onClick={addItem}>Add Goal</button>
       <List items={goals} removeItem={removeItem} />
     </div>
+  );
+};
+
+export const ConnectedGoals = () => {
+  return (
+    <Context.Consumer>
+      {(store) => {
+        const { goals } = store.getState();
+        return <Goals dispatch={store.dispatch} goals={goals} />;
+      }}
+    </Context.Consumer>
   );
 };
