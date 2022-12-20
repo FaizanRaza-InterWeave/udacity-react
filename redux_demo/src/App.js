@@ -1,7 +1,8 @@
 import { Todos } from "./Components/Todos";
 import { Goals } from "./Components/Goals";
 import { store, handleInitialData } from "./Components/store";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
+import { Provider, Context } from "./Components/context";
 
 function App() {
   let [dummyState, setDummyState] = useState(0);
@@ -31,4 +32,14 @@ function App() {
   );
 }
 
-export default App;
+function ConnectedApp(store) {
+  return (
+    <Context.Consumer>
+      {(store) => {
+        <App />;
+      }}
+    </Context.Consumer>
+  );
+}
+
+export { ConnectedApp };
