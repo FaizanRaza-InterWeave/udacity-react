@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      {dummyState}
+      Rerenders: {dummyState}
       <ConnectedTodos />
       <ConnectedGoals />
     </div>
