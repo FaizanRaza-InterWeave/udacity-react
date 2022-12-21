@@ -2,7 +2,7 @@ import { ConnectedTodos } from "./Components/Todos";
 import { ConnectedGoals } from "./Components/Goals";
 import { store, handleInitialData } from "./Components/store";
 import { useEffect, useState, createContext } from "react";
-import { Provider, Context, connect } from "./Components/context";
+import { Provider, connect } from "react-redux";
 
 function App({ loading, dispatch }) {
   // let [dummyState, setDummyState] = useState(0);

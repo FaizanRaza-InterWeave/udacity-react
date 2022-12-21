@@ -8,7 +8,7 @@ import {
   handleDeleteGoal,
 } from "./store";
 import { API } from "./API";
-import { Provider, Context, connect } from "./context";
+import { connect } from "react-redux";
 
 export const Goals = ({ dispatch, goals }) => {
   const inputRef = useRef();

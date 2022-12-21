@@ -4,7 +4,7 @@ import { ConnectedApp } from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { store } from "./Components/store";
-import { Provider, Context } from "./Components/context";
+import { Provider, connect } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

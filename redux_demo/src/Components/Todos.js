@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { List } from "./List";
 import { handleDeleteTodo, handleAddTodo, handleToggleTodo } from "./store";
-import { Provider, Context, connect } from "./context";
+import { connect } from "react-redux";
 
 export const Todos = ({ dispatch, todos }) => {
   const inputRef = useRef();
