@@ -2,22 +2,20 @@ import { ConnectedTodos } from "./Components/Todos";
 import { ConnectedGoals } from "./Components/Goals";
 import { store, handleInitialData } from "./Components/store";
 import { useEffect, useState, createContext } from "react";
-import { Provider, Context } from "./Components/context";
+import { Provider, Context, connect } from "./Components/context";
 
-function App() {
-  let [dummyState, setDummyState] = useState(0);
+function App({ loading, dispatch }) {
+  // let [dummyState, setDummyState] = useState(0);
+
+  // useEffect(() => {
+  //   store.subscribe(() => {
+  //     setDummyState((value) => value + 1);
+  //   });
+  // }, []);
 
   useEffect(() => {
-    store.subscribe(() => {
-      setDummyState((value) => value + 1);
-    });
+    dispatch(handleInitialData());
   }, []);
-
-  useEffect(() => {
-    store.dispatch(handleInitialData());
-  }, []);
-
-  const { loading } = store.getState();
 
   if (loading) {
     return <h3>Loading</h3>;
@@ -25,17 +23,21 @@ function App() {
 
   return (
     <div className="App">
-      Rerenders: {dummyState}
+      {/* Rerenders: {dummyState} */}
       <ConnectedTodos />
       <ConnectedGoals />
     </div>
   );
 }
 
-function ConnectedApp(store) {
-  return (
-    <Context.Consumer>{(store) => <App store={store} />}</Context.Consumer>
-  );
-}
+// function ConnectedApp(store) {
+//   return (
+//     <Context.Consumer>{(store) => <App store={store} />}</Context.Consumer>
+//   );
+// }
+
+const ConnectedApp = connect((state) => ({
+  loading: state.loading,
+}))(App);
 
 export { ConnectedApp };

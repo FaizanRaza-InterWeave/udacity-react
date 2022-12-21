@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { List } from "./List";
 import { handleDeleteTodo, handleAddTodo, handleToggleTodo } from "./store";
-import { Provider, Context } from "./context";
+import { Provider, Context, connect } from "./context";
 
 export const Todos = ({ dispatch, todos }) => {
   const inputRef = useRef();
@@ -31,13 +31,17 @@ export const Todos = ({ dispatch, todos }) => {
   );
 };
 
-export const ConnectedTodos = () => {
-  return (
-    <Context.Consumer>
-      {(store) => {
-        const { todos } = store.getState();
-        return <Todos todos={todos} dispatch={store.dispatch} />;
-      }}
-    </Context.Consumer>
-  );
-};
+// export const ConnectedTodos = () => {
+//   return (
+//     <Context.Consumer>
+//       {(store) => {
+//         const { todos } = store.getState();
+//         return <Todos todos={todos} dispatch={store.dispatch} />;
+//       }}
+//     </Context.Consumer>
+//   );ß
+// };
+
+export const ConnectedTodos = connect((state) => ({
+  todos: state.todos,
+}))(Todos);
