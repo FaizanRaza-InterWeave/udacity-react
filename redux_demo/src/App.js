@@ -5,14 +5,6 @@ import { useEffect, useState, createContext } from "react";
 import { Provider, connect } from "react-redux";
 
 function App({ loading, dispatch }) {
-  // let [dummyState, setDummyState] = useState(0);
-
-  // useEffect(() => {
-  //   store.subscribe(() => {
-  //     setDummyState((value) => value + 1);
-  //   });
-  // }, []);
-
   useEffect(() => {
     dispatch(handleInitialData());
   }, []);
@@ -29,12 +21,6 @@ function App({ loading, dispatch }) {
     </div>
   );
 }
-
-// function ConnectedApp(store) {
-//   return (
-//     <Context.Consumer>{(store) => <App store={store} />}</Context.Consumer>
-//   );
-// }
 
 const ConnectedApp = connect((state) => ({
   loading: state.loading,

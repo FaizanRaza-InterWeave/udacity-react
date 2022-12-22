@@ -34,17 +34,6 @@ export const Goals = ({ dispatch, goals }) => {
   );
 };
 
-// export const ConnectedGoals = () => {
-//   return (
-//     <Context.Consumer>
-//       {(store) => {
-//         const { goals } = store.getState();
-//         return <Goals dispatch={store.dispatch} goals={goals} />;
-//       }}
-//     </Context.Consumer>
-//   );
-// };
-
 export const ConnectedGoals = connect((state) => ({
   goals: state.goals,
 }))(Goals);
