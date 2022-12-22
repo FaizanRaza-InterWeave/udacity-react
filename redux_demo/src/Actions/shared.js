@@ -1,4 +1,4 @@
-import { API } from "../Components/API";
+import { API } from "../Util/API";
 
 export const RECEIVE_DATA = "RECEIVE_DATA";
 

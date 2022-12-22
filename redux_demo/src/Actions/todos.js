@@ -1,4 +1,4 @@
-import { API } from "../Components/API";
+import { API } from "../Util/API";
 
 export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";

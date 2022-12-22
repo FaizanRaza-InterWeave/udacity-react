@@ -1,4 +1,4 @@
-import { API } from "../Components/API";
+import { API } from "../Util/API";
 
 export const ADD_GOAL = "ADD_GOAL";
 export const REMOVE_GOAL = "REMOVE_GOAL";
