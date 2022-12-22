@@ -1,16 +1,9 @@
 import { useRef } from "react";
 import { List } from "./List";
-import {
-  addGoalAction,
-  generateId,
-  removeGoalAction,
-  handleAddGoal,
-  handleDeleteGoal,
-} from "./store";
-import { API } from "./API";
+import { handleAddGoal, handleDeleteGoal } from "../Actions/goals";
 import { connect } from "react-redux";
 
-export const Goals = ({ dispatch, goals }) => {
+const GoalsComponent = ({ dispatch, goals }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
@@ -34,6 +27,8 @@ export const Goals = ({ dispatch, goals }) => {
   );
 };
 
-export const ConnectedGoals = connect((state) => ({
+const Goals = connect((state) => ({
   goals: state.goals,
-}))(Goals);
+}))(GoalsComponent);
+
+export { Goals };

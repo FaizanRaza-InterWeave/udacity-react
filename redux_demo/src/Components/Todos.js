@@ -1,9 +1,13 @@
 import { useRef } from "react";
 import { List } from "./List";
-import { handleDeleteTodo, handleAddTodo, handleToggleTodo } from "./store";
+import {
+  handleDeleteTodo,
+  handleAddTodo,
+  handleToggleTodo,
+} from "../Actions/todos";
 import { connect } from "react-redux";
 
-export const Todos = ({ dispatch, todos }) => {
+const TodosComponent = ({ dispatch, todos }) => {
   const inputRef = useRef();
 
   const addItem = (event) => {
@@ -31,6 +35,8 @@ export const Todos = ({ dispatch, todos }) => {
   );
 };
 
-export const ConnectedTodos = connect((state) => ({
+const Todos = connect((state) => ({
   todos: state.todos,
-}))(Todos);
+}))(TodosComponent);
+
+export { Todos };

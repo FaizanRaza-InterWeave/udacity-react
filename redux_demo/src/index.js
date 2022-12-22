@@ -1,16 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ConnectedApp } from "./App";
+import { App } from "./Components/App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 
-import { store } from "./Components/store";
-import { Provider, connect } from "react-redux";
+import { reducer } from "./Reducers/index";
+import applyMiddleware from "./Middleware/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+const store = configureStore(
+  {
+    reducer,
+  },
+  applyMiddleware()
+);
+
 root.render(
   <Provider store={store}>
-    <ConnectedApp />
+    <App />
   </Provider>
 );
 
