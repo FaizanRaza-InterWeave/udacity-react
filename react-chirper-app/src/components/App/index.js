@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../Shared/initialData";
 import { Dashboard } from "../Dashboard";
 
-const App = ({ dispatch }) => {
+const App = ({ dispatch, loading }) => {
   useEffect(() => {
     dispatch(handleInitialData());
   }, []);
-  return <Dashboard></Dashboard>;
+  return <div>{loading ? null : <Dashboard />}</div>;
 };
 
-export default connect()(App);
+const mapStateToProps = (state) => ({
+  loading: state.authedUser === null,
+});
+
+export default connect(mapStateToProps)(App);
