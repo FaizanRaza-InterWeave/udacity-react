@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Tweet } from "../Tweet";
 
 const DashboardComponent = ({ tweetIds }) => {
   return (
@@ -7,7 +8,7 @@ const DashboardComponent = ({ tweetIds }) => {
       <ul className="dashboard-list">
         {tweetIds.map((id) => (
           <li key={id}>
-            <div>Tweet Id: {id}</div>
+            <Tweet id={id} />
           </li>
         ))}
       </ul>
