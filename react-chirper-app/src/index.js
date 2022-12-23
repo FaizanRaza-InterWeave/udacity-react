@@ -14,11 +14,23 @@ import { usersShort } from "./components/Shared/users";
 import { tweetsShort } from "./components/Shared/tweets";
 import { authedUserShort } from "./components/Shared/authedUser";
 
-const reducer = combineReducers(users, tweets, authedUser);
-const shortReducer = combineReducers(
-  usersShort.reducer,
-  tweetsShort.reducer,
-  authedUserShort.reducer
-);
+import { configureStore } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const reducer = combineReducers({ users, tweets, authedUser });
+const shortReducer = combineReducers({
+  users: usersShort.reducer,
+  tweets: tweetsShort.reducer,
+  authedUser: authedUserShort.reducer,
+});
+
+const store = configureStore({
+  reducer: reducer,
+});
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
