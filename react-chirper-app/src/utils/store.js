@@ -4,7 +4,7 @@ import { users } from "../components/Shared/users";
 import { tweets } from "../components/Shared/tweets";
 import { authedUser } from "../components/Shared/authedUser";
 
-// Short Store Importß
+// Short Store Import
 import { usersShort } from "../components/Shared/users";
 import { tweetsShort } from "../components/Shared/tweets";
 import { authedUserShort } from "../components/Shared/authedUser";
@@ -24,6 +24,6 @@ const shortReducer = combineReducers({
 });
 
 export const store = configureStore({
-  reducer: reducer,
+  reducer: shortReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

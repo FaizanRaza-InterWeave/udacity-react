@@ -1,7 +1,7 @@
 import { getInitialData } from "../../utils/api";
-import { receiveUsers } from "./users";
-import { receiveTweets } from "./tweets";
-import { setAuthedUser } from "./authedUser";
+import { usersShort, receiveUsers } from "./users";
+import { tweetsShort, receiveTweets } from "./tweets";
+import { authedUserShort, setAuthedUser } from "./authedUser";
 
 // _____________________________________________________________________________
 
@@ -13,6 +13,16 @@ export function handleInitialData() {
       dispatch(receiveUsers(users));
       dispatch(receiveTweets(tweets));
       dispatch(setAuthedUser(AUTHED_ID));
+    });
+  };
+}
+
+export function handleInitialDataShort() {
+  return (dispatch) => {
+    return getInitialData().then(({ users, tweets }) => {
+      dispatch(usersShort.actions.receive(users));
+      dispatch(tweetsShort.actions.receive(tweets));
+      dispatch(authedUserShort.actions.receive(AUTHED_ID));
     });
   };
 }

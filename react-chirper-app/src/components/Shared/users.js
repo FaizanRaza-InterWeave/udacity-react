@@ -31,7 +31,10 @@ export const usersShort = createSlice({
   initialState: {},
   reducers: {
     receive(state, action) {
-      return { ...state, ...action.users };
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
   },
 });

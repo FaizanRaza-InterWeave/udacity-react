@@ -25,11 +25,11 @@ export function authedUser(state = null, action) {
 
 // Attempted shorthand syntax
 export const authedUserShort = createSlice({
-  name: "tweets",
+  name: "authedUser",
   initialState: null,
   reducers: {
     receive(state, action) {
-      return { ...state, ...action.id };
+      return action.payload;
     },
   },
 });

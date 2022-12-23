@@ -31,7 +31,17 @@ export const tweetsShort = createSlice({
   initialState: {},
   reducers: {
     receive(state, action) {
-      return { ...state, ...action.tweets };
+      console.group("tweets");
+      console.log({ state });
+      console.log({ action });
+      // This nests the tweets too deep
+      // state.tweets = action.payload;
+
+      // This works
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
   },
 });
