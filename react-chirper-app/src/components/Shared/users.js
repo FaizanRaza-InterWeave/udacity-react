@@ -6,7 +6,7 @@ export const RECEIVE_USERS = "RECEIVE_USERS";
 // Define Action Creator
 export function receiveUsers(users) {
   return {
-    action: RECEIVE_USERS,
+    type: RECEIVE_USERS,
     users,
   };
 }

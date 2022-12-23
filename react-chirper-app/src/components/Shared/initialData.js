@@ -9,14 +9,10 @@ const AUTHED_ID = "tylermcginnis";
 
 export function handleInitialData() {
   return (dispatch) => {
-    return getInitialData()
-      .then((users, tweets) => {
-        dispatch(receiveTweets(tweets));
-        dispatch(receiveUsers(users));
-        dispatch(setAuthedUser(AUTHED_ID));
-      })
-      .catch(() => {
-        alert("An error occurred, Try again");
-      });
+    return getInitialData().then(({ users, tweets }) => {
+      dispatch(receiveUsers(users));
+      dispatch(receiveTweets(tweets));
+      dispatch(setAuthedUser(AUTHED_ID));
+    });
   };
 }

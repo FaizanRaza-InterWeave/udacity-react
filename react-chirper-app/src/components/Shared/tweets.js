@@ -7,16 +7,19 @@ export const RECEIVE_TWEETS = "RECEIVE_TWEETS";
 
 export function receiveTweets(tweets) {
   return {
-    action: RECEIVE_TWEETS,
+    type: RECEIVE_TWEETS,
     tweets,
   };
 }
 // Define reducer
 
 export function tweets(state = {}, action) {
-  switch (action) {
+  switch (action.type) {
     case RECEIVE_TWEETS:
-      return { ...state, ...action.tweets };
+      return {
+        ...state,
+        ...action.tweets,
+      };
     default:
       return state;
   }

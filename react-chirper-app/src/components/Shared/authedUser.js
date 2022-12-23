@@ -15,7 +15,7 @@ export function setAuthedUser(id) {
 // Define reducer
 
 export function authedUser(state = null, action) {
-  switch (action) {
+  switch (action.type) {
     case SET_AUTHED_USER:
       return action.id;
     default:
