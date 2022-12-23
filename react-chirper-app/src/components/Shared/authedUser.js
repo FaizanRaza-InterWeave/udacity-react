@@ -29,6 +29,10 @@ export const authedUserShort = createSlice({
   initialState: null,
   reducers: {
     receive(state, action) {
+      // This nests the authedUser too deep
+      // state.authedUser = action.payload;
+
+      // This works
       return action.payload;
     },
   },
