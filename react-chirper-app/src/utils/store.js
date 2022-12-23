@@ -1,8 +1,5 @@
 // Store Import
 import { combineReducers } from "redux";
-import { users } from "../components/Shared/users";
-import { tweets } from "../components/Shared/tweets";
-import { authedUser } from "../components/Shared/authedUser";
 
 // Short Store Import
 import { usersShort } from "../components/Shared/users";
@@ -14,8 +11,6 @@ import { logger } from "../components/Shared/logger";
 
 // Redux
 import { configureStore } from "@reduxjs/toolkit";
-
-const reducer = combineReducers({ users, tweets, authedUser });
 
 const shortReducer = combineReducers({
   users: usersShort.reducer,
