@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  handleInitialData,
-  handleInitialDataShort,
-} from "../Shared/initialData";
+import { handleInitialData } from "../Shared/initialData";
 
 const App = ({ dispatch }) => {
   useEffect(() => {
-    dispatch(handleInitialDataShort());
+    dispatch(handleInitialData());
   }, []);
   return <div>Starter Code</div>;
 };

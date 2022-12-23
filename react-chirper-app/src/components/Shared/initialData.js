@@ -1,16 +1,16 @@
 import { getInitialData } from "../../utils/api";
-import { usersShort } from "./users";
-import { tweetsShort } from "./tweets";
-import { authedUserShort } from "./authedUser";
+import { authedUser } from "./authedUser";
+import { tweets } from "./tweets";
+import { users } from "./users";
 
 const AUTHED_ID = "tylermcginnis";
 
-export function handleInitialDataShort() {
+export function handleInitialData() {
   return (dispatch) => {
-    return getInitialData().then(({ users, tweets }) => {
-      dispatch(usersShort.actions.receive(users));
-      dispatch(tweetsShort.actions.receive(tweets));
-      dispatch(authedUserShort.actions.receive(AUTHED_ID));
+    return getInitialData().then((response) => {
+      dispatch(users.actions.receive(response.users));
+      dispatch(tweets.actions.receive(response.tweets));
+      dispatch(authedUser.actions.receive(AUTHED_ID));
     });
   };
 }

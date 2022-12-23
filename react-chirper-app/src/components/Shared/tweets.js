@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const tweetsShort = createSlice({
+export const tweets = createSlice({
   name: "tweets",
   initialState: {},
   reducers: {

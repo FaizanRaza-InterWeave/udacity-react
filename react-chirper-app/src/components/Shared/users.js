@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const usersShort = createSlice({
+export const users = createSlice({
   name: "users",
   initialState: {},
   reducers: {

@@ -1,10 +1,10 @@
 // Store Import
 import { combineReducers } from "redux";
 
-// Short Store Import
-import { usersShort } from "../components/Shared/users";
-import { tweetsShort } from "../components/Shared/tweets";
-import { authedUserShort } from "../components/Shared/authedUser";
+//  Store Import
+import { users } from "../components/Shared/users";
+import { tweets } from "../components/Shared/tweets";
+import { authedUser } from "../components/Shared/authedUser";
 
 // Middleware
 import { logger } from "../components/Shared/logger";
@@ -12,13 +12,13 @@ import { logger } from "../components/Shared/logger";
 // Redux
 import { configureStore } from "@reduxjs/toolkit";
 
-const shortReducer = combineReducers({
-  users: usersShort.reducer,
-  tweets: tweetsShort.reducer,
-  authedUser: authedUserShort.reducer,
+const reducer = combineReducers({
+  users: users.reducer,
+  tweets: tweets.reducer,
+  authedUser: authedUser.reducer,
 });
 
 export const store = configureStore({
-  reducer: shortReducer,
+  reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
