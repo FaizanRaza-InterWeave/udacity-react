@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../Shared/initialData";
 import { Dashboard } from "../Dashboard";
-import { LoadingBar } from "react-redux-loading-bar";
+import LoadingBar from "react-redux-loading-bar";
 
 const App = ({ dispatch, loading }) => {
   useEffect(() => {
