@@ -18,7 +18,7 @@ export function tweets(state = {}, action) {
     case RECEIVE_TWEETS:
       return { ...state, ...action.tweets };
     default:
-      break;
+      return state;
   }
 }
 

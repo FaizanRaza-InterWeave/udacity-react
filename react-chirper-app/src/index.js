@@ -14,6 +14,10 @@ import { usersShort } from "./components/Shared/users";
 import { tweetsShort } from "./components/Shared/tweets";
 import { authedUserShort } from "./components/Shared/authedUser";
 
+// Middleware
+import { logger } from "./components/Shared/logger";
+
+// Redux
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
@@ -25,7 +29,8 @@ const shortReducer = combineReducers({
 });
 
 const store = configureStore({
-  reducer: reducer,
+  reducer: shortReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 
 ReactDOM.render(
