@@ -7,15 +7,27 @@ import {
 } from "react-icons/ti";
 
 import { handleToggleTweet } from "../Shared/tweets";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const TweetComponent = ({ authedUser, tweet, dispatch }) => {
-  console.log({ authedUser });
-  console.log({ tweet });
+  const {
+    name,
+    avatar,
+    timestamp,
+    text,
+    hasLiked,
+    likes,
+    replies,
+    parent,
+    id,
+  } = tweet;
 
+  const navigate = useNavigate();
   const toParent = (e, id) => {
     e.preventDefault();
 
-    // TODO: Redirect to parent tweet
+    navigate(`/tweet/${id}`);
   };
 
   const handleLike = (e) => {
@@ -30,14 +42,11 @@ export const TweetComponent = ({ authedUser, tweet, dispatch }) => {
     );
   };
 
-  const { name, avatar, timestamp, text, hasLiked, likes, replies, parent } =
-    tweet;
-
   if (tweet === null) {
     return <p>This tweet does not exist</p>;
   }
   return (
-    <div className="tweet">
+    <Link to={`/tweet/${id}`} className="tweet">
       <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
       <div className="tweet-info">
         <div>
@@ -72,7 +81,7 @@ export const TweetComponent = ({ authedUser, tweet, dispatch }) => {
           <span>{likes !== 0 && likes}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

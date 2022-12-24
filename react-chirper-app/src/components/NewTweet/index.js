@@ -1,8 +1,10 @@
 import { connect } from "react-redux";
 import { useState } from "react";
 import { handleAddTweet } from "../Shared/tweets";
+import { useNavigate } from "react-router-dom";
 
 export const NewTweetComponent = ({ dispatch, id }) => {
+  const navigate = useNavigate();
   const [text, setText] = useState("");
 
   const handleChange = (event) => {
@@ -11,11 +13,11 @@ export const NewTweetComponent = ({ dispatch, id }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    // TODO: add tweet to store
     dispatch(handleAddTweet(text, id));
-
     setText("");
+    if (!id) {
+      navigate("/");
+    }
   };
 
   const maxLength = 280;
