@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { authedUser } from "../Shared/authedUser";
 import { formatDate, formatTweet } from "../../utils/helpers";
 import {
   TiArrowBackOutline,
@@ -7,7 +6,9 @@ import {
   TiHeartFullOutline,
 } from "react-icons/ti";
 
-export const TweetComponent = ({ authedUser, tweet }) => {
+import { handleToggleTweet } from "../Shared/tweets";
+
+export const TweetComponent = ({ authedUser, tweet, dispatch }) => {
   console.log({ authedUser });
   console.log({ tweet });
 
@@ -17,10 +18,16 @@ export const TweetComponent = ({ authedUser, tweet }) => {
     // TODO: Redirect to parent tweet
   };
 
-  const handleLike = (e, id) => {
+  const handleLike = (e) => {
     e.preventDefault();
 
-    // TODO: Redirect to parent tweet
+    dispatch(
+      handleToggleTweet({
+        id: tweet.id,
+        hasLiked: tweet.hasLiked,
+        authedUser,
+      })
+    );
   };
 
   const { name, avatar, timestamp, text, hasLiked, likes, replies, parent } =
@@ -53,7 +60,7 @@ export const TweetComponent = ({ authedUser, tweet }) => {
           <button
             className="heart-button"
             onClick={(e) => {
-              handleLike();
+              handleLike(e);
             }}
           >
             {hasLiked === true ? (
