@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { useState } from "react";
+import { handleAddTweet } from "../Shared/tweets";
 
-export const NewTweetComponent = () => {
+export const NewTweetComponent = ({ dispatch, id }) => {
   const [text, setText] = useState("");
 
   const handleChange = (event) => {
@@ -12,7 +13,7 @@ export const NewTweetComponent = () => {
     event.preventDefault();
 
     // TODO: add tweet to store
-    console.log("New Tweet: ", text);
+    dispatch(handleAddTweet(text, id));
 
     setText("");
   };
@@ -40,8 +41,4 @@ export const NewTweetComponent = () => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
-};
-
-export const NewTweet = connect(mapStateToProps)(NewTweetComponent);
+export const NewTweet = connect()(NewTweetComponent);
