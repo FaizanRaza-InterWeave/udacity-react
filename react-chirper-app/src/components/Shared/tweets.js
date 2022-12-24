@@ -39,6 +39,7 @@ export const tweets = createSlice({
   },
 });
 
+// Wrapper around dispatch action to provide error handling
 export function handleToggleTweet(info) {
   return (dispatch) => {
     dispatch(tweets.actions.toggleTweet(info));
